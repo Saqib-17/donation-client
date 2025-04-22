@@ -8,7 +8,7 @@ const History = () => {
   useEffect(() => {
     const fetchDonations = async () => {
       try {
-        const res = await axios.get('https://donation-backend-xsc4.vercel.app/api/donations');
+        const res = await axios.post('https://donation-backend-xsc4.vercel.app/api/donations');
         setDonations(res.data);
       } catch (err) {
         console.error('Error fetching donation history:', err);
