@@ -75,7 +75,7 @@ const Home = () => {
     // ✅ Save donation to MongoDB with correct keys
     try {
       const { place } = donations.find((donation) => donation.id === id);
-      await axios.post('http://localhost:5000/api/donate', {
+      await axios.post('https://donation-backend-xsc4.vercel.app/api/donate', {
         causeId: id,
         causeName: place,
         amount: donationAmount
