@@ -27,24 +27,32 @@ export async function cashIn(loc, inputElement, balanceId) {
   const balanceElement = document.getElementById(balanceId);
   if (balanceElement) balanceElement.innerText = `${newBalance} BDT`;
 
-  // 🟢 Call backend API to save donation
-  try {
-    const res = await fetch("https://donation-backend-xsc4.vercel.app/api/donate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        causeId: loc.toLowerCase(),
-        causeName: loc,
-        amount: amount,
-      }),
-    });
-
-    const data = await res.json();
-    console.log("🔔 Saved to backend:", data);
-  } catch (err) {
-    console.error("❌ Error saving to backend:", err);
-  }
-
+    // 🟢 Call backend API to save donation
+    try {
+      const causeIds = {
+        "Noakhali": 1,
+        "Feni": 2,
+        "Quota Movement": 3,
+      };
+      
+      const causeId = causeIds[loc] || 0; // fallback to 0 if not found
+  
+      const res = await fetch("https://donation-backend-xsc4.vercel.app/api/donate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          causeId,
+          causeName: loc,
+          amount: amount,
+        }),
+      });
+  
+      const data = await res.json();
+      console.log("🔔 Saved to backend:", data);
+    } catch (err) {
+      console.error("❌ Error saving to backend:", err);
+    }
+  
   modalShow();
   addToHistory(amount, loc);
 }
