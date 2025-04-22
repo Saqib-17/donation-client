@@ -8,7 +8,7 @@ const History = () => {
   useEffect(() => {
     const fetchDonations = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/donations');
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/donations`);
         setDonations(res.data);
       } catch (err) {
         console.error('Error fetching donation history:', err);
