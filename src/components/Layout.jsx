@@ -62,7 +62,7 @@ const Layout = () => {
       {/* Footer */}
       <footer>
         <div className="bg-base-100 bg-secondary-color" />
-        <p> © 2025 Mango Squad. All rights reserved.</p>
+        <p> © 2025 Md. Shahidul Islam Sakib. All rights reserved. </p>
       </footer>
 
       {/* Modal Component */}
